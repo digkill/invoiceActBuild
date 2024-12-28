@@ -36,7 +36,11 @@ func main() {
 	for key, value := range variables {
 		placeholder := fmt.Sprintf("{%s}", key)
 
-		doc.Replace(placeholder, value, -1)
+		err := doc.Replace(placeholder, value, -1)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
 		fmt.Printf("Проверка текста: %s\n", key)
 		fmt.Printf("Заменяем %s на %s\n", placeholder, value)
